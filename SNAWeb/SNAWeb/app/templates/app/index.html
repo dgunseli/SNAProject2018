@@ -2,18 +2,168 @@
 
 {% block content %}
 
-<div style="width: 100%; float: left">
-<div id="canvas" style="height: 150px; float: left;"></div>
-<div style="float: left;">
-    {#<h1>Toplam Node Sayisi: {{nodeCount}}</h1>#}
-    {#
-    {% for sBilgi in pageData %}
-    <h1>{{sBilgi.sgketkinkod}}</h1>
-    {% endfor %}
-    #}
-</div>
+<div class="row">
+    
+
+    <div class="col-lg-4 bg-light" style="float: left; min-height: 100%; padding-top: 10px;">
+        <div class="card">
+            <div class="card-header">
+                Veri Filtreleme
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">Eczane</span>
+                            </div>
+                            <div class="dropdown" style="width:70%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="pharmacyFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                    Tümü
+                                </button>
+                                <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
+                                    {% for pharmacy in eczaneListesi %}
+                                        <a class="dropdown-item pharmacy-item" val="{{pharmacy.eczane_id}}" href="#">{{pharmacy.eczane_adi}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">Veri Aralığı</span>
+                            </div>
+                            <input class="form-control" type="text" name="daterange" value="01/01/2018 - 01/15/2018"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">Firma</span>
+                            </div>
+                            <div class="dropdown" style="width:70%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="firmFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                    Tümü
+                                </button>
+                                <div class="dropdown-menu form-control pre-scrollable" aria-labelledby="dropdownMenuButton">
+                                    {% for frm in firmaListesi %}
+                                        <a class="dropdown-item firm-item" val="{{frm.firma_id}}" href="#">{{frm.firma_adi}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn-success btn-lg btn-block" onclick="filterData()">Veri Filtrele</button>
+            </div>
+        </div>
+        <br/>
+        
+        <div class="card">
+            <div class="card-header">
+                Graph Özellikleri
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">#1 Node</span>
+                            </div>
+                            <div class="dropdown" style="width:70%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                    Tümü
+                                </button>
+                                <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Tümü</a>
+                                    <a class="dropdown-item" href="#">Eczane 1</a>
+                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">#2 Node</span>
+                            </div>
+                            <div class="dropdown" style="width:70%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                    Tümü
+                                </button>
+                                <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Tümü</a>
+                                    <a class="dropdown-item" href="#">Eczane 1</a>
+                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">Projection</span>
+                            </div>
+                            <div class="dropdown" style="width:70%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                    Tümü
+                                </button>
+                                <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Tümü</a>
+                                    <a class="dropdown-item" href="#">Eczane 1</a>
+                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                
+
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="width:30%">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">Node Weight</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Node Weight" aria-label="Node Weight" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg btn-block">Graph Oluştur</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-7" id="canvas" style="float: left; display: block; height: 100%;">
+    </div>
 </div>
 <script type="text/javascript">
+    $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+    }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
     debugger;
     var sample = '{{jsonData|safe}}';
     var data_from_django = jQuery.parseJSON(sample);
@@ -29,41 +179,19 @@
         edgeStyle: {
             'stroke-width': 10
         },
-        height:600,
-        width:600,
         with_labels: true
     });
+
+
+
+    $('.pharmacy-item').on('click', function() {
+        $('#pharmacyFilter').val($(this).attr('val'));
+        $('#pharmacyFilter').html($(this).text());
+    });
+
+    $('.firm-item').on('click', function() {
+        $('#firmFilter').val($(this).attr('val'));
+        $('#firmFilter').html($(this).text());
+    });
 </script>
-
-
-
-
-<!--<div class="jumbotron">
-    <h1>Django</h1>
-    <p class="lead">Django is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Django gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://www.djangobook.com/en/2.0/index.html">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.org/">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
--->
 {% endblock %}
