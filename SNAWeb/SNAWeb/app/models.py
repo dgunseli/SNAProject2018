@@ -4,8 +4,12 @@ Definition of models.
 
 from django.db import models
 from json import JSONEncoder
+from datetime import date, datetime
+
 
 def _default(self, obj):
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
     return getattr(obj.__class__, "to_json", _default.default)(obj)
 
 _default.default = JSONEncoder.default  # Save unmodified default.
@@ -34,7 +38,16 @@ class SatisDokumBilgi(models.Model):
             self.sgketkinkod, 
             int(self.firma_id), 
             self.madde)
-    
+    def getObject(dct):
+        bilgi = SatisDokumBilgi()
+        bilgi.eczane = dct['eczane']
+        bilgi.recete_no = dct['recete_no']
+        bilgi.doktor_diploma_tescil_no = dct['doktor_diploma_tescil_no']
+        bilgi.verilen_adet = dct['verilen_adet']
+        bilgi.urun_id = dct['urun_id']
+        bilgi.sgketkinkod = dct['sgketkinkod']
+        bilgi.madde = dct['madde']
+        return bilgi
 
 class EczaneBilgi(object):
     eczane_adi = str

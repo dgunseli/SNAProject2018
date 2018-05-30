@@ -73,21 +73,22 @@
                 Graph Özellikleri
             </div>
             <div class="card-body">
-                <div class="row" style="margin-bottom: 5px">
+                <div class="row first-node-row" style="margin-bottom: 5px">
                     <div class="col">
                         <div class="input-group">
                             <div class="input-group-prepend" style="width:30%">
                                 <span class="input-group-text" id="basic-addon1" style="width:100%">#1 Node</span>
                             </div>
                             <div class="dropdown" style="width:70%">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"  id="firstNode" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
                                     Tümü
                                 </button>
                                 <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Tümü</a>
-                                    <a class="dropdown-item" href="#">Eczane 1</a>
-                                    <a class="dropdown-item" href="#">Eczane 2</a>
-                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                    <a class="dropdown-item first-node-item thick_first_0" href="#" val="0" >Reçete</a>
+                                    <a class="dropdown-item first-node-item thick_first_1" href="#" val="1">Doktor</a>
+                                    <a class="dropdown-item first-node-item thick_first_2" href="#" val="2">Ürün</a>
+                                    <a class="dropdown-item first-node-item thick_first_3" href="#" val="3">Sgk Etkin Kod</a>
+                                    <a class="dropdown-item first-node-item thick_first_4" href="#" val="4">Firma</a>
                                 </div>
                             </div>
                         </div>
@@ -95,21 +96,22 @@
                     </div>
                 </div>
                 
-                <div class="row" style="margin-bottom: 5px">
+                <div class="row second-node-row" style="margin-bottom: 5px">
                     <div class="col">
                         <div class="input-group">
                             <div class="input-group-prepend" style="width:30%">
                                 <span class="input-group-text" id="basic-addon1" style="width:100%">#2 Node</span>
                             </div>
                             <div class="dropdown" style="width:70%">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="secondNode" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
                                     Tümü
                                 </button>
                                 <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Tümü</a>
-                                    <a class="dropdown-item" href="#">Eczane 1</a>
-                                    <a class="dropdown-item" href="#">Eczane 2</a>
-                                    <a class="dropdown-item" href="#">Eczane 2</a>
+                                    <a class="dropdown-item second-node-item thick_second_0" href="#" val="0">Doktor</a>
+                                    <a class="dropdown-item second-node-item thick_second_1" href="#" val="1">Reçete</a>
+                                    <a class="dropdown-item second-node-item thick_second_2" href="#" val="2">Ürün</a>
+                                    <a class="dropdown-item second-node-item thick_second_3" href="#" val="3">Sgk Etkin Kod</a>
+                                    <a class="dropdown-item second-node-item thick_second_4" href="#" val="4">Firma</a>
                                 </div>
                             </div>
                         </div>
@@ -117,40 +119,38 @@
                     </div>
                 </div>
                 
-                <div class="row" style="margin-bottom: 5px">
+                <div class="row projection-row" style="margin-bottom: 5px">
                     <div class="col">
-                        <div class="input-group">
+                        <div class="input-group ">
                             <div class="input-group-prepend" style="width:30%">
                                 <span class="input-group-text" id="basic-addon1" style="width:100%">Projection</span>
                             </div>
                             <div class="dropdown" style="width:70%">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
-                                    Tümü
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="projection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: static; width: 100%">
+                                    Doktor
                                 </button>
-                                <div class="dropdown-menu form-control" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Tümü</a>
-                                    <a class="dropdown-item" href="#">Eczane 1</a>
-                                    <a class="dropdown-item" href="#">Eczane 2</a>
-                                    <a class="dropdown-item" href="#">Eczane 2</a>
-                                </div>
-                            </div>
-                        </div>
+                                <div class="dropdown-menu form-control projections" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item projection-item thick_projection_0 frs-1" val="0" href="#">Doktor</a>
+                                    <a class="dropdown-item projection-item thick_projection_1 frs-2" val="1" href="#">Reçete</a>
+                                </div>                      
+                            </div>                          
+                        </div>                              
                             
                     </div>
                 </div>
                 
 
-                <div class="row" style="margin-bottom: 5px">
+                <div class="row min-weiht-row" style="margin-bottom: 5px">
                     <div class="col">
                         <div class="input-group">
                             <div class="input-group-prepend" style="width:30%">
                                 <span class="input-group-text" id="basic-addon1" style="width:100%">Node Weight</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Node Weight" aria-label="Node Weight" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Node Weight" id="nodeWeight" aria-label="Node Weight" aria-describedby="basic-addon1">
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Graph Oluştur</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="projectGraph()">Graph Oluştur</button>
             </div>
         </div>
     </div>
@@ -182,24 +182,45 @@
             format: 'DD/MM/YYYY'
         }
     });
-    
+
+    debugger;
     var pickedPharmacy = '{{eczaneId|safe}}';
     var pickedFirm = '{{firmaId|safe}}';
+    var pickedFirstNode = '{{firstNode|safe}}';
+    var pickedSecondNode = '{{secondNode|safe}}';
+    var pickedProjection = '{{projection|safe}}';
     if (pickedPharmacy) {
-        debugger;
         $('#pharmacyFilter').val(pickedPharmacy);
         $('#pharmacyFilter').html($('.thick_pharmacy_' +pickedPharmacy ).text());
     }
     if (pickedFirm) {
-        debugger;
         $('#firmFilter').val(pickedFirm);
         $('#firmFilter').html($('.thick_pharmacy_' +pickedFirm ).text());
+    }
+    if (pickedFirstNode) {
+        $('#firstNode').val(pickedFirstNode);
+        $('#firstNode').html($('.thick_first_' +pickedFirstNode ).text());
+        $('.frs-1').html($('.thick_first_' +pickedFirstNode ).text());
+        $('.frs-1').val(pickedFirstNode);
+    }
+    if (pickedSecondNode) {
+        $('#secondNode').val(pickedSecondNode);
+        $('#secondNode').html($('.thick_second_' +pickedSecondNode ).text());
+        $('.frs-2').html($('.thick_second_' +pickedSecondNode ).text());
+        $('.frs-2').val(pickedSecondNode);
+    }
+    if (pickedProjection) {
+        $('#projection').val(pickedProjection);
+        if ($('.frs-2').val() == pickedProjection) {
+            $('#projection').html($('.frs-2').text());
+        } else {
+            $('#projection').html($('.frs-1').text());
+        }
     }
     var sample = '{{jsonData|safe}}';
     if (sample != "None") {
         var data_from_django = jQuery.parseJSON(sample);
         var G = new jsnx.Graph();
-        debugger;
         for (var i = 0; i < data_from_django.length; i++) {
             G.addEdge(data_from_django[i][0], data_from_django[i][1], { 'weight': data_from_django[i][2].weight });
         }
@@ -219,9 +240,37 @@
         $('#pharmacyFilter').html($(this).text());
     });
 
+
     $('.firm-item').on('click', function() {
         $('#firmFilter').val($(this).attr('val'));
         $('#firmFilter').html($(this).text());
+    });
+    
+
+    $('.first-node-item').on('click', function() {
+        debugger;
+        $('#firstNode').val($(this).attr('val'));
+        $('#firstNode').html($(this).text());
+        $('.frs-1').html($(this).text());
+        $('.frs-1').val($(this).attr('val'));
+        $('#projection').val($(this).attr('val'));
+        $('#projection').html($(this).text());
+    });
+    
+    $('.second-node-item').on('click', function() {
+        debugger;
+        $('#secondNode').val($(this).attr('val'));
+        $('#secondNode').html($(this).text());
+        $('.frs-2').html($(this).text());
+        $('.frs-2').val($(this).attr('val'));
+        $('#projection').val($(this).attr('val'));
+        $('#projection').html($(this).text());
+    });
+    
+    $('.projection-item').on('click', function() {
+        debugger;
+        $('#projection').val($(this).val());
+        $('#projection').html($(this).text());
     });
 
     function filterData() {
@@ -233,6 +282,43 @@
         var endDateString = endDate.getFullYear() + "-" +  ("0" + (endDate.getMonth() + 1)).slice(-2)+ "-" + ("0" + endDate.getDate()).slice(-2) ;
         var redirectUrl = "http://" + window.location.host + "/?filter=true&eczane=" + eczaneFiltre + "&firma=" + firmaFiltre + "&start=" + startDateString + "&end=" + endDateString;
         window.open(redirectUrl,"_self");
+    }
+
+    function projectGraph() {
+        debugger;
+        $('.first-node-row').removeClass('alert-danger');
+        $('.second-node-row').removeClass('alert-danger');
+        $('.projection-row').removeClass('alert-danger');
+        var valid = true;
+        var firstNode = $('#firstNode').val();
+        if (firstNode == "") {
+            valid = false;
+            $('.first-node-row').addClass('alert-danger');
+        }
+        var secondNode = $('#secondNode').val();
+        if (secondNode == "") {
+            valid = false;
+            $('.second-node-row').addClass('alert-danger');
+        }
+        var projectionNode = $('#projection').val();
+        if (projectionNode == "") {
+            valid = false;
+            $('.projection-row').addClass('alert-danger');
+        }
+        var minWeight = $('#nodeWeight').val();
+        if (valid) {
+            var redirectUrl = "http://" +
+                window.location.host +
+                "/?project=true&firstNode=" +
+                firstNode +
+                "&secondNode=" +
+                secondNode +
+                "&projection=" +
+                projectionNode +
+                "&minWeight=" +
+                minWeight;
+            window.open(redirectUrl, "_self");
+        }
     }
 </script>
 {% endblock %}

@@ -40,8 +40,17 @@ def home(request):
             del request.session['ecz_id']
         if(request.session.get('firm_id',None) != None):
             del request.session['firm_id']
+        if(request.session.get('graph',None) != None):
+            del request.session['graph']
+        if(request.session.get('projection',None) != None):
+            del request.session['projection']
+        if(request.session.get('minWeight',None) != None):
+            del request.session['minWeight']
+        if(request.session.get('graphData',None) != None):
+            del request.session['graphData']
     filterTest = request.GET.get('filter',None)
     if(filterTest):
+        G = None
         queryCommand = "SELECT * FROM app_satisdokumbilgi WHERE"
         queryList = []
         startDateParam = request.GET.get('start',None)
@@ -80,18 +89,80 @@ def home(request):
                 filterCommand = " AND" + filterCommand
             queryCommand = queryCommand + filterCommand
         graphData = SatisDokumBilgi.objects.raw(queryCommand)
-        G = nx.Graph()
-        urunIdList = []
+        data = []
         for gData in graphData:
-            G.add_edge(gData.recete_no,gData.urun_id)
-            urunIdList.append(gData.urun_id)
-        P = bipartite.weighted_projected_graph(G,urunIdList)
+            data.append({'eczane' :gData.eczane,
+                        'recete_no' :gData.recete_no,
+                        'doktor_diploma_tescil_no' :gData.doktor_diploma_tescil_no,
+                        'verilen_adet' :gData.verilen_adet,
+                        'urun_id' :gData.urun_id,
+                        'sgketkinkod' :gData.sgketkinkod,
+                        'firma_id' :gData.firma_id,
+                        'madde' :gData.madde})
+        request.session['graphData'] = json.dumps(data)
+    projectGraph = request.GET.get('project',None)
+    if(projectGraph):
+        firstNode = request.GET.get('firstNode',None)
+        secondNode = request.GET.get('secondNode',None)
+        projection = request.GET.get('projection',None)
+        minWeight = request.GET.get('minWeight',None)
+        graphData = request.session.get('graphData',None)
+        gData =  json.loads(request.session.get('graphData',None))
+        G = nx.Graph()
+        graphData = []
+        projectionList = []
+        for dat in gData:
+            sBilgi = SatisDokumBilgi.getObject(dat)
+            graphData.append(sBilgi)
+        for gData in graphData:
+            val1 = None
+            val2 = None
+            if(firstNode == '0'):
+                val1 = gData.doktor_diploma_tescil_no
+            if(firstNode == '1'):
+                val1 = gData.recete_no
+            if(firstNode == '2'):
+                val1 = gData.urun_id
+            if(firstNode == '3'):
+                val1 = gData.sgketkinkod
+            if(firstNode == '4'):
+                val1 = gData.firma_id
+            if(secondNode == '0'):
+                val2 = gData.doktor_diploma_tescil_no
+            if(secondNode == '1'):
+                val2 = gData.recete_no
+            if(secondNode == '2'):
+                val2 = gData.urun_id
+            if(secondNode == '3'):
+                val2 = gData.sgketkinkod
+            if(secondNode == '4'):
+                val2 = gData.firma_id
+            G.add_edge(val1,val2)
+            if(projection == '0'):
+                projectionList.append(gData.doktor_diploma_tescil_no)
+            if(projection == '1'):
+                projectionList.append(gData.recete_no)
+            if(projection == '2'):
+                projectionList.append(gData.urun_id)
+            if(projection == '3'):
+                projectionList.append(gData.sgketkinkod)
+            if(projection == '4'):
+                projectionList.append(gData.firma_id)
+        projectionList = list(set(projectionList))
+        P = bipartite.weighted_projected_graph(G,projectionList)
         partData = list(P.edges.data())
         jsonData = json.dumps(partData)
+        request.session['json_data'] =  jsonData
+        request.session['first_node'] =  firstNode
+        request.session['second_node'] =  secondNode
+        request.session['projection'] =  projection
+        request.session['minWeight'] =  minWeight
     pharmacyList = []
     firmList = []
     firstNode =  request.session.get('first_node')
     secondNode =  request.session.get('second_node')
+    projection =  request.session.get('projection')
+    minWeight =  request.session.get('minWeight')
     dateStart =  request.session.get('date_start')
     dateEnd =  request.session.get('date_end')
     jsonGraphData = request.session.get('json_data')
@@ -125,11 +196,15 @@ def home(request):
             'title':'Ana Sayfa',
             'dateStart':dateStart,
             'dateEnd':dateEnd,
-            'jsonData':jsonData,
+            'jsonData':jsonGraphData,
             'eczaneListesi' : pharmacyList,
             'firmaListesi' : firmList,
             'eczaneId' : eczaneId,
-            'firmaId' : firmaId
+            'firmaId' : firmaId,
+            'firstNode' : firstNode,
+            'secondNode' : secondNode,
+            'projection' : projection,
+            'min-weight': minWeight
         })
 
 def contact(request):
