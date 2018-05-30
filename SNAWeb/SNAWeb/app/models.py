@@ -24,7 +24,16 @@ class SatisDokumBilgi(models.Model):
     firma_id = models.IntegerField(blank=True, null=True)
     madde = models.TextField(blank=True, null=True)
     def to_json(self):  
-        return '{{"madde": "{0}" ,"firma_id" : {1} }}'.format(self.madde, int(self.firma_id))
+        return '{{"eczane": "{0}" ,"recete_no" : {1},"islem_tarihi" : "{2}","doktor_diploma_tescil_no" : "{3}","verilen_adet" : {4},"urun_id" : {5},"sgketkinkod" : "{6}","firma_id" : {7},"madde" : "{8}" }}'.format(
+            int(self.eczane), 
+            self.recete_no, 
+            self.islem_tarihi, 
+            self.doktor_diploma_tescil_no, 
+            int(self.verilen_adet), 
+            int(self.urun_id), 
+            self.sgketkinkod, 
+            int(self.firma_id), 
+            self.madde)
     
 
 class EczaneBilgi(object):
