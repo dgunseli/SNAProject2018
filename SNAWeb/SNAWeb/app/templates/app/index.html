@@ -224,15 +224,22 @@
         for (var i = 0; i < data_from_django.length; i++) {
             G.addEdge(data_from_django[i][0], data_from_django[i][1], { 'weight': data_from_django[i][2].weight });
         }
-        jsnx.draw(G,
-            {
-                element: '#canvas',
-                weighted: true,
-                edgeStyle: {
-                    'stroke-width': 10
-                },
-                with_labels: true
-            });
+        jsnx.draw(G, {
+        element: '#canvas',  
+        weighted: true,
+     weightedStroke: true,
+        edgeStyle: {
+            'stroke-width': 8
+        },
+        withLabels: true,
+    labelStyle: {fill: 'red','stroke-width': 8},
+    stickyDrag: true , 
+    nodeStyle: {
+        fill: function(d) { 
+            return color(d.data.group); 
+        } 
+    },
+    });
     }
 
     $('.pharmacy-item').on('click', function() {
